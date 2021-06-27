@@ -1,0 +1,530 @@
+
+ <!DOCTYPE HTML>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  
+    <title>Linux学习篇（一）：Linux从零开始 | Huae Wiki</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="Huaecase">
+    
+
+    
+    <meta name="description" content="一：安装系统 先安装一个 Ubuntu(乌班图)&#x2F; Deepin(深度）&#x2F; Ukylin(优麒麟) 的桌面版。深度 和 优麒麟 都是 基于Ubunutu 的 国产版，添加了许多人性化的功能、体验友好。形式可以有 U盘启动系统(可参照下文U盘启动系统)、双系统(可参照下文U盘安装盘) 、虚拟机、WSL（Windows Subsystem for Linux）。 题外话： 这里说的 《U盘启动系统》是">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux学习篇（一）：Linux从零开始">
+<meta property="og:url" content="http://huae.wiki/2021/06/27/Linux%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ALinux%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B/index.html">
+<meta property="og:site_name" content="Huae Wiki">
+<meta property="og:description" content="一：安装系统 先安装一个 Ubuntu(乌班图)&#x2F; Deepin(深度）&#x2F; Ukylin(优麒麟) 的桌面版。深度 和 优麒麟 都是 基于Ubunutu 的 国产版，添加了许多人性化的功能、体验友好。形式可以有 U盘启动系统(可参照下文U盘启动系统)、双系统(可参照下文U盘安装盘) 、虚拟机、WSL（Windows Subsystem for Linux）。 题外话： 这里说的 《U盘启动系统》是">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2021-06-27T06:51:16.000Z">
+<meta property="article:modified_time" content="2021-06-27T06:52:09.359Z">
+<meta property="article:author" content="Huaecase">
+<meta property="article:tag" content="ubuntu">
+<meta name="twitter:card" content="summary">
+
+    
+    <link rel="alternative" href="/atom.xml" title="Huae Wiki" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="/img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="/img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="/img/jacman.jpg">
+    
+    
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/%02.css">
+<link rel="stylesheet" href="/.css">
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="Huae Wiki" title="Huae Wiki"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="Huae Wiki">Huae Wiki</a></h1>
+				<h2 class="blog-motto"></h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="Menu">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="Search" />
+						<input type="hidden" name="q" value="site:huae.wiki">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main" class="post" itemscope itemprop="blogPost">
+  
+	<article itemprop="articleBody"> 
+		<header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2021/06/27/Linux学习篇（一）：Linux从零开始/" title="Linux学习篇（一）：Linux从零开始" itemprop="url">Linux学习篇（一）：Linux从零开始</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="Huaecase" target="_blank" itemprop="author">Huaecase</a>
+		
+  <p class="article-time">
+    <time datetime="2021-06-27T06:51:16.000Z" itemprop="datePublished"> Published 2021-06-27</time>
+    
+  </p>
+</header>
+	<div class="article-content">
+		
+		<div id="toc" class="toc-article">
+			<strong class="toc-title">Contents</strong>
+		
+			<ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%EF%BC%9A%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">一：安装系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%EF%BC%9A%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">二：基础命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%EF%BC%9A%E6%9B%BF%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-number">3.</span> <span class="toc-text">三：替换软件源</span></a></li></ol>
+		
+		</div>
+		
+		<h4 id="一：安装系统"><a href="#一：安装系统" class="headerlink" title="一：安装系统"></a><a href="">一：安装系统</a></h4><p> 先安装一个 Ubuntu(乌班图)/ Deepin(深度）/ Ukylin(优麒麟) 的桌面版。深度 和 优麒麟 都是 基于Ubunutu 的 国产版，添加了许多人性化的功能、体验友好。形式可以有 U盘启动系统(可参照下文U盘启动系统)、双系统(可参照下文U盘安装盘) 、虚拟机、WSL（Windows Subsystem for Linux）。</p>
+<p>题外话：</p>
+<p>这里说的 《U盘启动系统》是指 《系统安装在U盘里面》 相当于 安装一个 应用软件时 选择 软件安装位置为 U盘。windows10 下 balenaEtcher.exe  就可以将Linux发行版的 iso镜像文件 写到 U盘里面，在写入镜像文件前建议用  SD Card Formatter.exe 格式化目标U盘。《U盘启动系统》制作好以后可以重启电脑，进入Bios 设置为 U盘启动，就能体验一把Linux了。 题外之外话： 1 .电脑启动先是进主板的Bios , Bios再引导 操系统启动   2.有些U盘或者主板的问题，Bios界面可能检测不到U盘</p>
+<p>与《U盘启动系统》 对应的 另一个 是《( U盘 ) 安装盘》，相当于安装一个应用软件时，《软件安装包》位置为 U盘。当想厌倦了机械硬盘 ，买了固态硬盘的后 在一块空白的硬盘上安装 win10 ，然后再安装 Linux系统。 你可能 会用到：</p>
+<p>a.  <a href="">先分区, 搜索GPT之类的</a></p>
+<p>b.  <a target="_blank" rel="noopener" href="https://www.zhihu.com/question/54059979">如何重装win 10 系统？ - 知乎 </a></p>
+<p>c.  <a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_27790011/article/details/79496373">windows系统下安装linux-ubuntu双系统_程序员爱酸奶 </a></p>
+<p>d.  <a target="_blank" rel="noopener" href="https://blog.csdn.net/mtllyb/article/details/78635757">彻底删除Ubuntu EFI分区及启动项 </a></p>
+<h4 id="二：基础命令"><a href="#二：基础命令" class="headerlink" title="二：基础命令"></a><a href="">二：基础命令</a></h4><p>打开 终端 ( Terminal )快捷键 Ctrl + Alt + T 。</p>
+<p>若终端中执行命令时提示 权限不足 ，可以以管理员身份执行命令。ubuntu下为  sudo ，如 sudo mkdir huae。<br>查找命令帮助：[ help / man / info / whatis ] + command ， 比如 man  ls 。 新安装系统可能不支持  whatis 或其他，需要安装对应组件。</p>
+<p>查找相关命令：apropos  ， 如关于 net： apropos   net<br>命令自动补全 技巧 ：命令前一部分 + Tab键  ，要求 “命令的前一部分”  在终端看来是唯一的，否则有多个的话，终端不能决定 补全成哪个。</p>
+<ol>
+<li>查看当前 工作路径：pwd  <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">pwd</span> </span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>　　<br>2. 列出当前目录文件(夹)：ls  </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ls</span><br></pre></td></tr></table></figure>
+<p>　　</p>
+<ol start="3">
+<li>更改当前路径：cd<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span>   . .　  <span class="comment">#出到上一层目&lt; .. &gt;代表上一层目录&lt; . &gt;代表当前目录</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span>  /      <span class="comment">#回到&lt; / &gt; 即根目录</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span>  ~      <span class="comment">#等同于&lt; cd &gt;，回到 home 目录</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span>  -      <span class="comment">#回到刚才所在的目录，可以理解为执行最近一次 cd 命令前所在的目录</span></span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>假设当前在 home 目录下，要新建一个文件夹huae ：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir huae 　</span><br></pre></td></tr></table></figure>
+
+<p>进入huae文件夹：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span>   ./huae 　         <span class="comment">#&lt;cd ./huae&gt;等同于&lt;cd   huae&gt; , &lt; ./ &gt;表示当前目录下，可以省略</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span>   /home/huae    　　 <span class="comment">#以绝对路径的形式去到home目录下的 huae 文件夹</span></span><br></pre></td></tr></table></figure>
+
+<p>　</p>
+<ol start="4">
+<li>复制文件： cp   </li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp    <span class="built_in">source</span>     object　         <span class="comment">#将 source 文件复制为 object&lt;br&gt;&lt;br&gt;cp    source     /dir/   　       #将 source 文件复制到 目录 /dir 下 &lt;br&gt;&lt;br&gt;cp    source     /dir/object      #将 source 文件复制到 目录 /dir 下，object 后面没有 &lt; / &gt;则 object 解释为文件名，则复制得到的文件重命名为 object  &lt;br&gt;&lt;br&gt;cp    -r    sourcedir  destdir    #复制文件夹 时 要加参数 r （recursive ） 表 递归</span></span><br></pre></td></tr></table></figure>
+
+<p>　　</p>
+<ol start="5">
+<li>删除文件（夹）：  rm</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm   -f      file     &lt;br&gt;</span><br><span class="line">rm  -f -r   directory    <span class="comment">#删除文件夹 directory ，当然也包括其中的文件。r 是 recursive缩写，代表递归、f 是 force 缩写，代表强制，-f -r 可连写为  -fr 或 -rf </span></span><br></pre></td></tr></table></figure>
+<p>　　</p>
+<ol start="6">
+<li>移动文件（夹）： mv </li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">mv   <span class="built_in">source</span>　　object　　　      <span class="comment"># 将 source 文件移动为 object, 同级目录下 mv  亦即 重命名 &lt;br&gt;</span></span><br><span class="line">mv   <span class="built_in">source</span>    /dir/   　　      <span class="comment">#将 source 文件移动到 目录 /dir 下&lt;br&gt;</span></span><br><span class="line">mv   <span class="built_in">source</span>    /dir/object      <span class="comment"># 将 source 文件移动到 目录 /dir 下，并重命名为 object</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="三：替换软件源"><a href="#三：替换软件源" class="headerlink" title="三：替换软件源"></a><a href="">三：替换软件源</a></h4><p>ubuntu下 常用的一个安装软件 命令  sudo apt install app  。 apt 就能从网络中下载app 安装了。那 apt 去哪里找这个 app 呢？这就要配置  apt 的软件源了。  配置文为 /etc/apt/sources.list </p>
+<p>sources.list 的软件源默认配置为ubuntu 的 官方源，国内访问速度比较慢。一般需要修改，修改sources.list  前建议先备份：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@localhost <span class="comment">#  cd /etc/apt/　                         [ 进入文件夹] &lt;br&gt;  　　　    </span></span><br><span class="line">root@localhost <span class="comment">#  cp sources.list sources.list.backup     [ 备份]&lt;br&gt;</span></span><br><span class="line">root@localhost <span class="comment">#  sudo vim sources.list　　                [ 编辑]  </span></span><br></pre></td></tr></table></figure>
+
+<p>用 vim 编辑 source.list , 也可以以管理员身份用其他文本编辑器修改sources.list ]</p>
+<p>可以将 官方源 替换为 国内的  阿里云  或其他 镜像源。要注意 源  的版本 和 系统版本 对上号  。如ubuntu 20.4 ：　</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">root@localhost <span class="comment">#   lsb_release -a　　　　#[查看系统代号]</span></span><br><span class="line"> </span><br><span class="line">　　　No LSB modules are available.</span><br><span class="line">　　　Distributor ID: Ubuntu</span><br><span class="line">　　　Description: Ubuntu 20.04.1 LTS</span><br><span class="line">　　　Release: 20.04</span><br><span class="line">　　　Codename: focal </span><br><span class="line"><span class="string">&quot; focal &quot;</span> 就是 ubuntu20.4 的代号。 软件源 sources.list 中可见 形如：　deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse</span><br></pre></td></tr></table></figure>
+
+
+<p>vim 是 vi 的升级版，vim 更好用，但新系统可能没有安装vim。 关于vim 用法，请看Linux学习篇（二）：学习vim。
+　</p>
+<p>弄完以上的，可以遨游一番Linux系统了，带着好奇心去探索吧！</p>
+  
+	</div>
+		<footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/ubuntu/">ubuntu</a>
+  </div>
+
+</div>
+
+
+
+	<div class="article-share" id="share">
+	
+	  <div data-url="http://huae.wiki/2021/06/27/Linux%E5%AD%A6%E4%B9%A0%E7%AF%87%EF%BC%88%E4%B8%80%EF%BC%89%EF%BC%9ALinux%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B/" data-title="Linux学习篇（一）：Linux从零开始 | Huae Wiki" data-tsina="" class="share clearfix">
+	  </div>
+	
+	</div>
+
+
+</footer>
+
+   	       
+	</article>
+	
+<nav class="article-nav clearfix">
+ 
+ <div class="prev" >
+ <a href="/2021/06/27/Linux学习篇（八）：优麒麟20-4-添加分区、home目录重定向-ARM-Linux/" title="Linux学习篇（八）：优麒麟20.4 添加分区、home目录重定向--ARM_Linux">
+  <strong>上一篇：</strong><br/>
+  <span>
+  Linux学习篇（八）：优麒麟20.4 添加分区、home目录重定向--ARM_Linux</span>
+</a>
+</div>
+
+
+<div class="next">
+<a href="/2021/05/30/Ubuntu-20-4-Hexo-Nginx-搭建公网博客/"  title="Ubuntu 20.4 + Hexo + Nginx  搭建公网博客">
+ <strong>下一篇：</strong><br/> 
+ <span>Ubuntu 20.4 + Hexo + Nginx  搭建公网博客
+</span>
+</a>
+</div>
+
+</nav>
+
+	
+
+
+
+</div>  
+      <div class="openaside"><a class="navbutton" href="#" title="Show Sidebar"></a></div>
+
+  <div id="toc" class="toc-aside">
+  <strong class="toc-title">Contents</strong>
+ 
+ <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%EF%BC%9A%E5%AE%89%E8%A3%85%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.</span> <span class="toc-text">一：安装系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%EF%BC%9A%E5%9F%BA%E7%A1%80%E5%91%BD%E4%BB%A4"><span class="toc-number">2.</span> <span class="toc-text">二：基础命令</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%EF%BC%9A%E6%9B%BF%E6%8D%A2%E8%BD%AF%E4%BB%B6%E6%BA%90"><span class="toc-number">3.</span> <span class="toc-text">三：替换软件源</span></a></li></ol>
+ 
+  </div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="Hide Sidebar"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">Tags</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/hexo-ubuntu/" title="hexo  ubuntu">hexo  ubuntu<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/ubuntu/" title="ubuntu">ubuntu<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/Linux-Ukylin/" title="Linux Ukylin">Linux Ukylin<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">Links</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+          <li>
+            
+            	<a href="http://wuchong.me" target="_blank" title="Jark&#39;s Blog">Jark&#39;s Blog</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">Weibo</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> Hello ,I&#39;m Larry Page in Google. <br/>
+			This is my blog,believe it or not.</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2176287895" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2021 
+		
+		<a href="/about" target="_blank" title="Huaecase">Huaecase</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="/js/jquery-2.0.3.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
+<script src="/js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+      
+      $('#toc.toc-aside').css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  c.click(function(){
+    ta.css('display', 'block').addClass('fadeIn');
+  });
+  o.click(function(){
+    ta.css('display', 'none');
+  });
+  $(window).scroll(function(){
+    ta.css("top",Math.max(140,320-$(this).scrollTop()));
+  });
+});
+</script>
+
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  var $this = $('.share'),
+      url = $this.attr('data-url'),
+      encodedUrl = encodeURIComponent(url),
+      title = $this.attr('data-title'),
+      tsina = $this.attr('data-tsina'),
+      description = $this.attr('description');
+  var html = [
+  '<div class="hoverqrcode clearfix"></div>',
+  '<a class="overlay" id="qrcode"></a>',
+  '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+  '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+  '<a href="#qrcode" class="article-share-qrcode" title="微信"></a>',
+  '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&srcUrl=' + encodedUrl + '&title=' + title +'" class="article-share-renren" target="_blank" title="人人"></a>',
+  '<a href="http://service.weibo.com/share/share.php?title='+title+'&url='+encodedUrl +'&ralateUid='+ tsina +'&searchPic=true&style=number' +'" class="article-share-weibo" target="_blank" title="微博"></a>',
+  '<span title="Share to"></span>'
+  ].join('');
+  $this.append(html);
+
+  $('.hoverqrcode').hide();
+
+  var myWidth = 0;
+  function updatehoverqrcode(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+    var qrsize = myWidth > 1024 ? 200:100;
+    var options = {render: 'image', size: qrsize, fill: '#2ca6cb', text: url, radius: 0.5, quiet: 1};
+    var p = $('.article-share-qrcode').position();
+    $('.hoverqrcode').empty().css('width', qrsize).css('height', qrsize)
+                          .css('left', p.left-qrsize/2+20).css('top', p.top-qrsize-10)
+                          .qrcode(options);
+  };
+  $(window).resize(function(){
+    $('.hoverqrcode').hide();
+  });
+  $('.article-share-qrcode').click(function(){
+    updatehoverqrcode();
+    $('.hoverqrcode').toggle();
+  });
+  $('.article-share-qrcode').hover(function(){}, function(){
+      $('.hoverqrcode').hide();
+  });
+});   
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="Back to Top"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+</html>
